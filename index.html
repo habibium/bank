@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Details of Habibur Rahman</title>
+
+    <style>
+      :root {
+        font-family: serif;
+        color-scheme: light dark;
+        color: white;
+        background-color: #000;
+      }
+
+      section {
+        overflow-x: scroll;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      td {
+        white-space: nowrap;
+        border: 0.0625rem solid #777;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      div {
+        min-width: 320px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      td:first-child {
+        font-weight: bold;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          color: #000;
+          background-color: #fff;
+        }
+
+        td {
+          border: 0.0625rem solid #000;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Bank Details of Habibur Rahman</h1>
+      <button>Copy All</button>
+      <section>
+        <table>
+          <tr>
+            <td>Account Holder's Name</td>
+            <td>
+              <div>
+                <p>Habibur Rahman</p>
+                <button>Copy</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Bank Name</td>
+            <td>
+              <div>
+                <p>United Commercial Bank Limited</p>
+                <button>Copy</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Account Number</td>
+            <td>
+              <div>
+                <p>1303201000062216</p>
+                <button>Copy</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Routing Number</td>
+            <td>
+              <div>
+                <p>245270082</p>
+                <button>Copy</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Branch Name</td>
+            <td>
+              <div>
+                <p>Sarulia Bazar</p>
+                <button>Copy</button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      function handleCopyToClipboard(e) {
+        const textarea = document.createElement("textarea");
+        textarea.value = e.target.previousElementSibling.textContent;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        e.target.textContent = "✅";
+        setTimeout(() => {
+          e.target.textContent = "Copy";
+        }, 1000);
+      }
+
+      function handleCopyAllToClipboard(e) {
+        const textarea = document.createElement("textarea");
+        textarea.value = `Account Holder's Name: Habibur Rahman
+Account Number: 1303201000062216
+Bank Name: United Commercial Bank Limited
+Routing Number: 245270082
+Branch: Sarulia Bazar`;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        e.target.textContent = "✅";
+        setTimeout(() => {
+          e.target.textContent = "Copy All";
+        }, 1000);
+      }
+
+      document
+        .querySelector("main > button")
+        .addEventListener("click", handleCopyAllToClipboard);
+
+      document
+        .querySelectorAll("table button")
+        .forEach((button) =>
+          button.addEventListener("click", handleCopyToClipboard)
+        );
+    </script>
+  </body>
+</html>
