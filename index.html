@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bank Details of Habibur Rahman</title>
+    <meta
+      name="description"
+      content="Bank account details of Habibur Rahman, available offline."
+    />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Bank Details" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
     <style>
       :root {
@@ -149,18 +163,18 @@ Branch: Sarulia Bazar`;
         );
 
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("./sw.js")
-            .then((registration) => {
-              console.log(
-                "Service Worker registered successfully:",
-                registration.scope
-              );
-            })
-            .catch((error) => {
-              console.log("Service Worker registration failed:", error);
+        window.addEventListener("load", async () => {
+          try {
+            // updateViaCache "none" keeps Pages' max-age=600 from hiding a new worker.
+            await navigator.serviceWorker.register("/sw.js", {
+              scope: "/",
+              updateViaCache: "none",
             });
+            // Only persisted storage survives Safari's 7-day and Chrome's pressure eviction.
+            await navigator.storage?.persist?.();
+          } catch (error) {
+            console.log("Service Worker registration failed:", error);
+          }
         });
       }
     </script>

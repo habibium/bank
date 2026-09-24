@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Bank">
+  <rect width="512" height="512" fill="#000"/>
+  <g fill="#fff" transform="translate(256 256) scale(0.6) translate(-256 -256)">
+    <path d="M256 74 456 176v34H56v-34z"/>
+    <rect x="56" y="238" width="52" height="176"/>
+    <rect x="156" y="238" width="52" height="176"/>
+    <rect x="256" y="238" width="52" height="176"/>
+    <rect x="356" y="238" width="52" height="176"/>
+    <rect x="36" y="414" width="440" height="42"/>
+  </g>
+</svg>
